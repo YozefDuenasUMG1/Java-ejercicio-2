@@ -1,13 +1,28 @@
 import java.util.Scanner;
 
-public class EjerciciosDeControl {
-    public static void main(String[] args) {
+class IfElseEjercicios {
+    public void ejecutar() {
         Scanner scanner = new Scanner(System.in);
 
-        
         System.out.print("Ingrese un número: ");
         int numero = scanner.nextInt();
 
+        determinarSignoNumero(numero);
+
+        determinarParImpar(numero);
+
+        System.out.print("Ingrese el segundo número: ");
+        int num2 = scanner.nextInt();
+        System.out.print("Ingrese el tercer número: ");
+        int num3 = scanner.nextInt();
+        encontrarMayor(numero, num2, num3);
+
+        System.out.print("Ingrese un año: ");
+        int anio = scanner.nextInt();
+        determinarAnioBisiesto(anio);
+    }
+
+    private void determinarSignoNumero(int numero) {
         if (numero > 0) {
             System.out.println("El número " + numero + " es positivo.");
         } else if (numero < 0) {
@@ -15,21 +30,18 @@ public class EjerciciosDeControl {
         } else {
             System.out.println("El número es cero.");
         }
+    }
 
-        
+    private void determinarParImpar(int numero) {
         if (numero % 2 == 0) {
             System.out.println("El número " + numero + " es par.");
         } else {
             System.out.println("El número " + numero + " es impar.");
         }
+    }
 
-
-        System.out.print("Ingrese el segundo número: ");
-        int num2 = scanner.nextInt();
-        System.out.print("Ingrese el tercer número: ");
-        int num3 = scanner.nextInt();
-
-        int mayor = numero;
+    private void encontrarMayor(int num1, int num2, int num3) {
+        int mayor = num1;
 
         if (num2 > mayor) {
             mayor = num2;
@@ -40,18 +52,36 @@ public class EjerciciosDeControl {
         }
 
         System.out.println("El mayor de los tres números es: " + mayor);
+    }
 
- 
-        System.out.print("Ingrese un año: ");
-        int anio = scanner.nextInt();
-
+    private void determinarAnioBisiesto(int anio) {
         if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {
             System.out.println("El año " + anio + " es bisiesto.");
         } else {
             System.out.println("El año " + anio + " no es bisiesto.");
         }
+    }
+}
 
-        
+class WhileEjercicios {
+    public void ejecutar() {
+        Scanner scanner = new Scanner(System.in);
+
+        imprimirNumerosUnoAlVeinte();
+
+        System.out.print("Ingrese un número: ");
+        int n = scanner.nextInt();
+        imprimirNumerosHastaN(n);
+
+        int suma = sumarNumerosPositivos();
+        System.out.println("La suma de los números positivos ingresados es: " + suma);
+
+        System.out.print("Ingrese un número: ");
+        int numFibonacci = scanner.nextInt();
+        generarFibonacci(numFibonacci);
+    }
+
+    private void imprimirNumerosUnoAlVeinte() {
         int contador = 1;
         System.out.println("Números del 1 al 20:");
         while (contador <= 20) {
@@ -59,18 +89,20 @@ public class EjerciciosDeControl {
             contador++;
         }
         System.out.println();
+    }
 
-        System.out.print("Ingrese un número: ");
-        int n = scanner.nextInt();
-        contador = 1;
+    private void imprimirNumerosHastaN(int n) {
+        int contador = 1;
         System.out.print("Números desde 1 hasta " + n + ": ");
         while (contador <= n) {
             System.out.print(contador + " ");
             contador++;
         }
         System.out.println();
+    }
 
-        
+    private int sumarNumerosPositivos() {
+        Scanner scanner = new Scanner(System.in);
         int suma = 0;
         int numeroPositivo;
 
@@ -83,63 +115,89 @@ public class EjerciciosDeControl {
             }
         } while (numeroPositivo >= 0);
 
-        System.out.println("La suma de los números positivos ingresados es: " + suma);
+        return suma;
+    }
 
-        
-        System.out.print("Ingrese un número: ");
-        int numFibonacci = scanner.nextInt();
-
+    private void generarFibonacci(int n) {
         int a = 0, b = 1;
-        System.out.print("Secuencia de Fibonacci hasta " + numFibonacci + ": " + a + " " + b + " ");
+        System.out.print("Secuencia de Fibonacci hasta " + n + ": " + a + " " + b + " ");
 
         int siguiente = 0;
-        while (siguiente <= numFibonacci) {
+        while (siguiente <= n) {
             siguiente = a + b;
             a = b;
             b = siguiente;
 
-            if (siguiente <= numFibonacci) {
+            if (siguiente <= n) {
                 System.out.print(siguiente + " ");
             }
         }
         System.out.println();
+    }
+}
 
-        // Ejercicios con for
-        // 1. Imprimir los números pares del 2 al 20
+class ForEjercicios {
+    public void ejecutar() {
+        Scanner scanner = new Scanner(System.in);
+
+        imprimirNumerosPares();
+
+        System.out.print("Ingrese un número: ");
+        int numTabla = scanner.nextInt();
+        mostrarTablaMultiplicar(numTabla);
+
+        System.out.print("Ingrese un número entero positivo: ");
+        int numSumaPares = scanner.nextInt();
+        int suma = sumarNumerosPares(numSumaPares);
+        System.out.println("La suma de los números pares desde 1 hasta " + numSumaPares + " es: " + suma);
+
+        System.out.print("Ingrese un número: ");
+        int numFactorial = scanner.nextInt();
+        long factorial = calcularFactorial(numFactorial);
+        System.out.println("El factorial de " + numFactorial + " es: " + factorial);
+    }
+
+    private void imprimirNumerosPares() {
         System.out.print("Números pares del 2 al 20: ");
         for (int i = 2; i <= 20; i += 2) {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
 
-        
-        System.out.print("Ingrese un número: ");
-        int numTabla = scanner.nextInt();
-        System.out.println("Tabla de multiplicar del " + numTabla + ":");
+    private void mostrarTablaMultiplicar(int numero) {
+        System.out.println("Tabla de multiplicar del " + numero + ":");
         for (int i = 1; i <= 10; i++) {
-            System.out.println(numTabla + " x " + i + " = " + (numTabla * i));
+            System.out.println(numero + " x " + i + " = " + (numero * i));
         }
+    }
 
-        
-        System.out.print("Ingrese un número entero positivo: ");
-        int numSumaPares = scanner.nextInt();
-        suma = 0;
-
-        for (int i = 2; i <= numSumaPares; i += 2) {
+    private int sumarNumerosPares(int n) {
+        int suma = 0;
+        for (int i = 2; i <= n; i += 2) {
             suma += i;
         }
+        return suma;
+    }
 
-        System.out.println("La suma de los números pares desde 1 hasta " + numSumaPares + " es: " + suma);
-
-    
-        System.out.print("Ingrese un número: ");
-        int numFactorial = scanner.nextInt();
+    private long calcularFactorial(int n) {
         long factorial = 1;
-
-        for (int i = 1; i <= numFactorial; i++) {
+        for (int i = 1; i <= n; i++) {
             factorial *= i;
         }
+        return factorial;
+    }
+}
 
-        System.out.println("El factorial de " + numFactorial + " es: " + factorial);
+public class EjerciciosDeControl {
+    public static void main(String[] args) {
+        IfElseEjercicios ifElseEjercicios = new IfElseEjercicios();
+        ifElseEjercicios.ejecutar();
+
+        WhileEjercicios whileEjercicios = new WhileEjercicios();
+        whileEjercicios.ejecutar();
+
+        ForEjercicios forEjercicios = new ForEjercicios();
+        forEjercicios.ejecutar();
     }
 }
